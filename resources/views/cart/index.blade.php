@@ -21,7 +21,7 @@
                     <td scope="row">{{ $item->name }}</td>
                     <td>
 
-                        {{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}
+                        €  {{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}
 
                     </td>
                     <td>
@@ -40,6 +40,10 @@
                 </tr>
             </tbody>
     @endforeach
-
         </table>
+<h3>
+    Total Price : €{{Cart::session(auth()->id())->getTotal()}}
+</h3>
+
+
 @endsection

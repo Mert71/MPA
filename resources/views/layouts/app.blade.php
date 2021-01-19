@@ -42,7 +42,7 @@
                             <a class="nav-link" href="{{ route('cart.index') }}">Cart
 
                                 <div class="badge">
-                                    {{Cart::session(auth()->id())->getTotalQuantity()}}
+                                    {{Cart::session(auth()->id())->getContent()->count()}}
                                 </div>
                             </a>
                         </li>
