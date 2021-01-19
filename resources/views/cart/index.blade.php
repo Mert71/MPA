@@ -19,7 +19,11 @@
     @foreach ($cartItems as $item)
                 <tr>
                     <td scope="row">{{ $item->name }}</td>
-                    <td>{{ $item->price }}</td>
+                    <td>
+
+                        {{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}
+
+                    </td>
                     <td>
                         <form action="{{route('cart.update',$item->id)}}">
 
