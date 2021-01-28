@@ -27,10 +27,9 @@ Auth::routes();
 Route::get('/home', 'homeController@index')->name('home');
 
 
-
-Route::get('/add-to-cart/{product}', 'cartController@add')->name('cart.add')->middleware('auth');
+Route::get('/add-to-cart/{product}', 'cartController@add')->name('cart.add');
 
 Route::get('/cart', 'cartController@index')->name('cart.index')->middleware('auth');
-Route::get('/cart/destroy/{itemId}', 'cartController@destroy')->name('cart.destory')->middleware('auth');
+Route::get('/cart/destroy/{itemId}', 'cartController@destroy')->name('cart.destory');
 
 Route::get('/cart/update/{itemId}', 'cartController@update')->name('cart.update')->middleware('auth');

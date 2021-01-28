@@ -34,15 +34,14 @@ class cartController extends Controller
     }
 
 
+    //Delete item from cart
     public function destroy($itemId){
-
-
         \Cart::session(auth()->id())->remove($itemId);
 
         return back();
     }
 
-
+    //Adjust quantity of products
     public function update($rowId){
         \Cart::session(auth()->id())->update($rowId,[
             'quantity' => array(
