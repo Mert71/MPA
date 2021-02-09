@@ -34,6 +34,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <a class="nav-link" href="{{route('category.hiphop')}}">Hip Hop</a>
+                        <a class="nav-link" href="">Jazz</a>
+                        <a class="nav-link" href="http://">Soul</a>
+                        <a class="nav-link" href="http://">Rock</a>
+                        <a class="nav-link" href="http://">Pop</a>
+
 
                     </ul>
 

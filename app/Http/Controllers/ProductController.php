@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function sortHipHop(){
+        $hiphop = DB::table('products')->where('category' , 'Hip Hop')->get();
+
+        return view('category.index', ['hiphopData' => $hiphop]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
