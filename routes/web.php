@@ -36,3 +36,7 @@ Route::get('/cart/destroy/{itemId}', 'cartController@destroy')->name('cart.desto
 Route::get('/cart/update/{itemId}', 'cartController@update')->name('cart.update');
 
 Route::get('/category/HipHop' , 'ProductController@sortHipHop') ->name('category.hiphop');
+Route::get('/category/Rock' , 'ProductController@sortRock') ->name('category.rock');
+Route::get('/category/Jazz' , 'ProductController@sortJazz') ->name('category.jazz');
+Route::get('/category/Soul' , 'ProductController@sortSoul') ->name('category.soul');
+Route::get('/category/Pop' , 'ProductController@sortPop') ->name('category.pop');

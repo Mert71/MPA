@@ -35,10 +35,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <a class="nav-link" href="{{route('category.hiphop')}}">Hip Hop</a>
-                        <a class="nav-link" href="">Jazz</a>
-                        <a class="nav-link" href="http://">Soul</a>
-                        <a class="nav-link" href="http://">Rock</a>
-                        <a class="nav-link" href="http://">Pop</a>
+                        <a class="nav-link" href="{{route('category.jazz')}}">Jazz</a>
+                        <a class="nav-link" href="{{route('category.soul')}}">Soul</a>
+                        <a class="nav-link" href="{{route('category.rock')}}">Rock</a>
+                        <a class="nav-link" href="{{route('category.pop')}}">Pop</a>
 
 
                     </ul>

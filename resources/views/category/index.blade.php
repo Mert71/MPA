@@ -5,7 +5,7 @@
 
 <div class="row">
 
-@foreach ($hiphopData as $product)
+@foreach ($sortedData as $product)
 
 <div class="col-3">
     <div class="card">

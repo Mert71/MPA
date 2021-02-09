@@ -9,9 +9,33 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function sortHipHop(){
-        $hiphop = DB::table('products')->where('category' , 'Hip Hop')->get();
+        $sorted = DB::table('products')->where('category' , 'Hip Hop')->get();
 
-        return view('category.index', ['hiphopData' => $hiphop]);
+        return view('category.index', ['sortedData' => $sorted]);
+    }
+
+    public function sortRock(){
+        $sorted = DB::table('products')->where('category' , 'Rock')->get();
+
+        return view('category.index', ['sortedData' => $sorted]);
+    }
+
+    public function sortJazz(){
+        $sorted = DB::table('products')->where('category' , 'Jazz')->get();
+
+        return view('category.index', ['sortedData' => $sorted]);
+    }
+
+    public function sortSoul(){
+        $sorted = DB::table('products')->where('category' , 'Soul')->get();
+
+        return view('category.index', ['sortedData' => $sorted]);
+    }
+
+    public function sortPop(){
+        $sorted = DB::table('products')->where('category' , 'Pop')->get();
+
+        return view('category.index', ['sortedData' => $sorted]);
     }
 
 
