@@ -31,8 +31,9 @@ Route::get('/home', 'ProductController@index')->name('home');
 //Cart Crud Routes
 Route::get('/add-to-cart/{id}' , 'ProductController@getAddToCart') ->name('product.addToCart');
 Route::get('/cart', 'ProductController@getCart')->name('product.shoppingCart');
-Route::get('/cart/destroy/{itemId}', 'cartController@destroy')->name('cart.destory');
-Route::get('/cart/update/{itemId}', 'cartController@update')->name('cart.update');
+Route::get('/cart/reduce/{id}', 'ProductController@getReduceByOne')->name('product.reduceByOne');
+Route::get('/cart/remove/{id}', 'ProductController@getRemoveItem')->name('product.remove');
+Route::get('/cart/update/{id}', 'ProductController@getAddByOne')->name('product.addByOne');
 
 //Category Routes
 Route::get('/category/HipHop' , 'CategoryController@sortHipHop') ->name('category.hiphop');

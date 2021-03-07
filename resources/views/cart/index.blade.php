@@ -12,9 +12,9 @@
                             <div class="btn group">
                                 <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown"> Action <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">+1</a></li>
-                                    <li><a href="#">-1</a></li>
-                                    <li><a href="#">Remove All</a></li>
+                                    <li><a href="{{route('product.addByOne', ['id' => $product['item']['id']])}}">+1</a></li>
+                                    <li><a href="{{route('product.reduceByOne', ['id' => $product['item']['id']])}}">-1</a></li>
+                                    <li><a href="{{route('product.remove', ['id' => $product['item']['id']])}}">Remove All</a></li>
                                 </ul>
                             </div>
                             <span class="badge badge-dark">{{$product['qty']}}</span>

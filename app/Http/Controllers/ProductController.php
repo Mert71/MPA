@@ -31,10 +31,34 @@ class ProductController extends Controller
         $cart->add($product, $product->id);
 
         $request ->session()->put('cart', $cart);
-        /**
-        dd($request->session()->get('cart'));
-  */
         return redirect()->route('home');
+    }
+
+    public function getReduceByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart =new Cart($oldCart);
+        $cart->reduceByOne($id);
+
+        Session::put('cart', $cart);
+        return redirect()->route('product.shoppingCart');
+    }
+
+    public function getRemoveItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart =new Cart($oldCart);
+        $cart->removeItem($id);
+
+        Session::put('cart', $cart);
+        return redirect()->route('product.shoppingCart');
+    }
+
+    public function getAddByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart =new Cart($oldCart);
+        $cart->addByOne($id);
+
+        Session::put('cart', $cart);
+        return redirect()->route('product.shoppingCart');
     }
 
     public function getCart(){
