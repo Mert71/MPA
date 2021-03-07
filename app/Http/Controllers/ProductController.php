@@ -8,6 +8,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function Psy\debug;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,11 @@ class ProductController extends Controller
         $cart =new Cart($oldCart);
         $cart->reduceByOne($id);
 
-        Session::put('cart', $cart);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        }else {
+            Session::forget('cart');
+        }
         return redirect()->route('product.shoppingCart');
     }
 
@@ -48,7 +53,12 @@ class ProductController extends Controller
         $cart =new Cart($oldCart);
         $cart->removeItem($id);
 
-        Session::put('cart', $cart);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        }else {
+            Session::forget('cart');
+        }
+
         return redirect()->route('product.shoppingCart');
     }
 
@@ -63,7 +73,7 @@ class ProductController extends Controller
 
     public function getCart(){
         if (!Session::has('cart')){
-            return view('cart.shopping-cart');
+            return view('cart.index');
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
