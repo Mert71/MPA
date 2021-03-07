@@ -2,43 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class ProductController extends Controller
 {
-    public function sortHipHop(){
-        $sorted = DB::table('products')->where('category' , 'Hip Hop')->get();
-
-        return view('category.index', ['sortedData' => $sorted]);
-    }
-
-    public function sortRock(){
-        $sorted = DB::table('products')->where('category' , 'Rock')->get();
-
-        return view('category.index', ['sortedData' => $sorted]);
-    }
-
-    public function sortJazz(){
-        $sorted = DB::table('products')->where('category' , 'Jazz')->get();
-
-        return view('category.index', ['sortedData' => $sorted]);
-    }
-
-    public function sortSoul(){
-        $sorted = DB::table('products')->where('category' , 'Soul')->get();
-
-        return view('category.index', ['sortedData' => $sorted]);
-    }
-
-    public function sortPop(){
-        $sorted = DB::table('products')->where('category' , 'Pop')->get();
-
-        return view('category.index', ['sortedData' => $sorted]);
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -46,8 +18,35 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::take(20)->get();
+
+        return view('home' , ['allProducts' => $products]);
+
     }
+
+    public function getAddToCart(Request $request , $id){
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request ->session()->put('cart', $cart);
+        /**
+        dd($request->session()->get('cart'));
+  */
+        return redirect()->route('home');
+    }
+
+    public function getCart(){
+        if (!Session::has('cart')){
+            return view('cart.shopping-cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view ('cart.index', ['products' => $cart->items, 'totalPrice' => $cart-> totalPrice]);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +66,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required|numeric',
+        ]);
+
+        $product = new Product([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'price' => $request->get('price'),
+
+        ]);
+
+        $product->save();
+
+        return redirect('/allProducts');
+
     }
 
     /**

@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
 class cartController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->cart = new Cart();
+    }
+
+    //Show the cart view with some data.
+    public function index()
+    {
+        var_dump();
+    }
+
     public function add(Product $product){
 
         //add to cart
@@ -24,14 +36,7 @@ class cartController extends Controller
 
     }
 
-    public function index(){
 
-
-        $cartItems = \Cart::session(auth()->id())->getContent();
-
-    //Pass cartItems to index view
-        return view('cart.index', compact('cartItems'));
-    }
 
 
     //Delete item from cart
@@ -44,7 +49,7 @@ class cartController extends Controller
     //Adjust quantity of products
     public function update($rowId){
         \Cart::session(auth()->id())->update($rowId,[
-            'quantity' => array(
+                'quantity' => array(
                 'relative' => false,
                 'value' => request('quantity')
             )
@@ -52,5 +57,6 @@ class cartController extends Controller
 
         return back();
     }
+
 
 }

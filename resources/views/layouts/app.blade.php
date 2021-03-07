@@ -46,11 +46,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.index') }}">
+                            <a class="nav-link" href="{{ route('product.shoppingCart') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
+                                <!-- If session has cart, get total qty, else display nothing-->
                                 <div class="badge badge-danger">
-                                    {{Cart::session(auth()->id())->getContent()->count()}}
+                                    {{Session::has('cart') ? Session::get('cart')->totalQty : ''}}
                                 </div>
                             </a>
                         </li>

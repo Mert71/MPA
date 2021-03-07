@@ -25,18 +25,21 @@ Route::redirect('/', 'home');
 
 Auth::routes();
 
-Route::get('/home', 'homeController@index')->name('home');
+//index routes
+Route::get('/home', 'ProductController@index')->name('home');
 
-
-Route::get('/add-to-cart/{product}', 'cartController@add')->name('cart.add');
-
-Route::get('/cart', 'cartController@index')->name('cart.index');
+//Cart Crud Routes
+Route::get('/add-to-cart/{id}' , 'ProductController@getAddToCart') ->name('product.addToCart');
+Route::get('/cart', 'ProductController@getCart')->name('product.shoppingCart');
 Route::get('/cart/destroy/{itemId}', 'cartController@destroy')->name('cart.destory');
-
 Route::get('/cart/update/{itemId}', 'cartController@update')->name('cart.update');
 
-Route::get('/category/HipHop' , 'ProductController@sortHipHop') ->name('category.hiphop');
-Route::get('/category/Rock' , 'ProductController@sortRock') ->name('category.rock');
-Route::get('/category/Jazz' , 'ProductController@sortJazz') ->name('category.jazz');
-Route::get('/category/Soul' , 'ProductController@sortSoul') ->name('category.soul');
-Route::get('/category/Pop' , 'ProductController@sortPop') ->name('category.pop');
+//Category Routes
+Route::get('/category/HipHop' , 'CategoryController@sortHipHop') ->name('category.hiphop');
+Route::get('/category/Rock' , 'CategoryController@sortRock') ->name('category.rock');
+Route::get('/category/Jazz' , 'CategoryController@sortJazz') ->name('category.jazz');
+Route::get('/category/Soul' , 'CategoryController@sortSoul') ->name('category.soul');
+Route::get('/category/Pop' , 'CategoryController@sortPop') ->name('category.pop');
+
+//Order Routes
+Route::get('/order' , 'OrderController@index') -> name('order.index');
