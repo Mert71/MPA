@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Session;
 use App\Cart;
+use App\Order;
+use App\User;
 use App\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use function Psy\debug;
+use Illuminate\Http\Request;
+
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -80,7 +84,23 @@ class ProductController extends Controller
         return view ('cart.index', ['products' => $cart->items, 'totalPrice' => $cart-> totalPrice]);
     }
 
+    public function postCheckout(Request $request){
+        if (!Session::has('cart')) {
+            return redirect()->route('product.shoppingCart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
 
+        //make a new order and serialize the cart in it
+        $order = new Order();
+        $order->cart = serialize($cart);
+        $order->user_id = Auth::id();
+
+        Auth::user()->order()->save($order);
+        //forget the cart
+        Session::forget('cart');
+        return redirect()->route('home')->with('success', 'Succesfully purchased products!');
+    }
 
     /**
      * Show the form for creating a new resource.

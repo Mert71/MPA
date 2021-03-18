@@ -8,6 +8,10 @@ class Order extends Model
 {
     public $table = "orders";
 
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
     public function products()
     {
         return $this->belongsToMany('App\Product');

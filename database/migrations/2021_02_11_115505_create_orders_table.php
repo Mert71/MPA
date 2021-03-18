@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->timestamps();
+            $table->text('cart');
+            $table->string('name');
         });
     }
 

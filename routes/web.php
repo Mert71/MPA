@@ -35,6 +35,8 @@ Route::get('/cart/reduce/{id}', 'ProductController@getReduceByOne')->name('produ
 Route::get('/cart/remove/{id}', 'ProductController@getRemoveItem')->name('product.remove');
 Route::get('/cart/update/{id}', 'ProductController@getAddByOne')->name('product.addByOne');
 
+Route::get('/checkout', 'ProductController@postCheckout') ->name('checkout');
+
 //Category Routes
 Route::get('/category/HipHop' , 'CategoryController@sortHipHop') ->name('category.hiphop');
 Route::get('/category/Rock' , 'CategoryController@sortRock') ->name('category.rock');
