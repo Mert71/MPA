@@ -1,9 +1,10 @@
 <?php
 
 namespace App;
-
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Session;
 use App\Product;
+use Illuminate\Database\Eloquent\Model;
 
 class Cart
 {
@@ -11,8 +12,12 @@ class Cart
     public $totalQty;
     public $totalPrice;
 
-    public function __construct($oldCart)
+    /**
+     * Check if an old cart exists -> replace the old cart items with new cart
+     */
+    public function __construct()
     {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
         if ($oldCart) {
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
@@ -20,6 +25,9 @@ class Cart
         }
     }
 
+    /**
+     * Add an item to the cart
+     */
     public function add($item, $id){
         $storedItem = ['qty' => 0, 'price'=>$item->price, 'item'=>$item]; //Creating an associative array for the Stored Item
 
@@ -36,6 +44,9 @@ class Cart
         $this->totalPrice+= $item->price;
     }
 
+    /**
+     * Reduce by one with product id
+     */
     public function reduceByOne($id){
         $this->items [$id]['qty']--;
         $this->items [$id]['price'] -= $this->items[$id]['item']['price'];
@@ -47,6 +58,9 @@ class Cart
         }
     }
 
+    /**
+     * Remove item with product id
+     */
     public function removeItem($id){
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];
@@ -54,6 +68,9 @@ class Cart
         unset($this->items[$id]);
     }
 
+    /**
+     * Add one item with product id
+     */
     public function addByOne($id){
         $this->items [$id]['qty']++;
         $this->items [$id]['price'] += $this->items[$id]['item']['price'];
@@ -66,6 +83,14 @@ class Cart
     {
         //Retrieves all the data from the session.
         return session('cart');
+    }
+
+    public function checkForgetCart(){
+        if (count($this->items) > 0) {
+            Session::put('cart', $this);
+        }else {
+            Session::forget('cart');
+        }
     }
 
 }

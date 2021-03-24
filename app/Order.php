@@ -16,4 +16,13 @@ class Order extends Model
     {
         return $this->belongsToMany('App\Product');
     }
+
+    /**
+     * get the cart attribute and unserialize the value
+     */
+
+    public function getCartAttribute($value) {
+        return unserialize($value);
+    }
+
 }

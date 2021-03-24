@@ -66,6 +66,9 @@
                         </div>
                     </form>
                 </div>
+                <div class="form-group">
+                <p>Don't have an account? <a href="{{route('register')}}">Sign up instead!</a></p>
+                  </div>
             </div>
         </div>
     </div>

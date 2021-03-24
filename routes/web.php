@@ -35,7 +35,7 @@ Route::get('/cart/reduce/{id}', 'ProductController@getReduceByOne')->name('produ
 Route::get('/cart/remove/{id}', 'ProductController@getRemoveItem')->name('product.remove');
 Route::get('/cart/update/{id}', 'ProductController@getAddByOne')->name('product.addByOne');
 
-Route::get('/checkout', 'ProductController@postCheckout') ->name('checkout');
+Route::get('/checkout', 'ProductController@postCheckout') ->name('checkout')->middleware('auth');;
 
 //Category Routes
 Route::get('/category/HipHop' , 'CategoryController@sortHipHop') ->name('category.hiphop');
@@ -46,3 +46,4 @@ Route::get('/category/Pop' , 'CategoryController@sortPop') ->name('category.pop'
 
 //Order Routes
 Route::get('/order' , 'OrderController@index') -> name('order.index');
+Route::get('/order/profile' , 'OrderController@getProfile') -> name('order.profile');
