@@ -60,7 +60,6 @@ class ProductController extends Controller
         $cart->removeItem($id);
         $cart->checkForgetCart();
 
-
         return redirect()->route('product.shoppingCart');
     }
 
@@ -71,7 +70,6 @@ class ProductController extends Controller
         $cart =new Cart();
         $cart->addByOne($id);
 
-        Session::put('cart', $cart);
         return redirect()->route('product.shoppingCart');
     }
 
