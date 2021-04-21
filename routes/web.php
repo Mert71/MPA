@@ -38,6 +38,7 @@ Route::get('/cart/update/{id}', 'ProductController@getAddByOne')->name('product.
 Route::get('/checkout', 'ProductController@postCheckout') ->name('checkout')->middleware('auth');;
 
 //Category Routes
+Route::get('/category/{category?}' , 'CategoryController@sortProducts') ->name('category.products');
 Route::get('/category/HipHop' , 'CategoryController@sortHipHop') ->name('category.hiphop');
 Route::get('/category/Rock' , 'CategoryController@sortRock') ->name('category.rock');
 Route::get('/category/Jazz' , 'CategoryController@sortJazz') ->name('category.jazz');

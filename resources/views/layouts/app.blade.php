@@ -34,11 +34,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <a class="nav-link" href="{{route('category.hiphop')}}">Hip Hop</a>
-                        <a class="nav-link" href="{{route('category.jazz')}}">Jazz</a>
-                        <a class="nav-link" href="{{route('category.soul')}}">Soul</a>
-                        <a class="nav-link" href="{{route('category.rock')}}">Rock</a>
-                        <a class="nav-link" href="{{route('category.pop')}}">Pop</a>
+                        <a class="nav-link" href="{{route('category.products', $category = 'Hip Hop')}}">Hip Hop</a>
+                        <a class="nav-link" href="{{route('category.products', $category = 'Jazz')}}">Jazz</a>
+                        <a class="nav-link" href="{{route('category.products', $category = 'Soul')}}">Soul</a>
+                        <a class="nav-link" href="{{route('category.products', $category = 'Rock')}}">Rock</a>
+                        <a class="nav-link" href="{{route('category.products', $category = 'Pop')}}">Pop</a>
 
 
                     </ul>

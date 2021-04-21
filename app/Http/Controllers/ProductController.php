@@ -82,6 +82,7 @@ class ProductController extends Controller
         }
         $cart = new Cart();
         return view ('cart.index', ['products' => $cart->items, 'totalPrice' => $cart-> totalPrice]);
+
     }
 
     /**
@@ -104,7 +105,6 @@ class ProductController extends Controller
         Session::forget('cart');
         return redirect()->route('home')->with('success', 'Succesfully purchased products!');
     }
-
 
     /**
      * Store a newly created resource in storage.
